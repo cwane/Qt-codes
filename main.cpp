@@ -28,7 +28,7 @@ int main( int argc, char *argv[] )
 //    QScreen *screen = app.primaryScreen();
 //    QPixmap inPixmap = screen->grabWindow( 0 );
 
-    QPixmap *inPixmap   = new QPixmap("C:/Users/Dell/Pictures/edc.png");
+    QPixmap *inPixmap   = new QPixmap("C:/Users/Dell/Pictures/ect fourier.png");
 //     QPixmap qImage2 = qImage2->scaled(this->width(),this->height(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     //    QPixmap inPixmap;
     QByteArray inByteArray;
@@ -47,7 +47,7 @@ int main( int argc, char *argv[] )
     QSqlQuery query= QSqlQuery( db );
 //    query.exec( "CREATE TABLE IF NOT EXISTS imgTable ( filename TEXT, imagedata BLOB )" );
 
-    query.prepare( "INSERT INTO imgTable (filename, imagedata) VALUES ('codee.png', :imageData)" );
+    query.prepare( "INSERT INTO imgTable (filename, imagedata) VALUES ('new.png', :imageData)" );
     query.bindValue( ":imageData", inByteArray );
     if( !query.exec() )
         qDebug() << "Error inserting image into table:\n" << query.lastError();
@@ -55,7 +55,7 @@ int main( int argc, char *argv[] )
 
 
     // Get image data back from database
-    if( !query.exec( "SELECT  imagedata from imgTable" ))
+    if( !query.exec( "SELECT  imagedata from imgTable " ))
         qDebug() << "Error getting image from table:\n" << query.lastError();
     query.first();
     QByteArray outByteArray = query.value( 0 ).toByteArray();
